@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="left">
+    <h1>Users</h1>
+    @if(users(); as users) {
+      @for( user of users | itemPosition; track trackByFn($index, user);) {  
+        <div (click)="selectPostsFromUser(user)" [class.isSelected]="selectedUser().id === user.id" class="card"
+        [ngClass]="{
+            'isFirst': user.rowPosition === 'isFirst',
+            'isLast': user.rowPosition === 'isLast',
+            'isEven': user.rowPosition === 'isEven',
+            'isOdd': user.rowPosition === 'isOdd'
+        }">
+              @switch (user.rowPosition) {
+                @case('isFirst') {
+                  <h1>{{ user.name  }}</h1>
+                }
+                @case('isLast') {
+                  <h2>{{ user.name  }}</h2>
+                }
+                @case('isEven') {
+                  <h3>{{ user.name  }}</h3> 
+                }
+                @case('isOdd') {
+                  <h4>{{ user.name  }}</h4>
+                } 
+                @default {
+                  <h1>Unpredicted case</h1>
+                }
+              }
+      </div>
+      } @empty {
+        <div>No Users</div>
+      } 
+    } @else {
+      <div>...Loading / Error </div> 
+    } 
+  </div>
+
+  <div class="right">
+    <h1>{{ selectedUser().name || 'Total' }} Posts - {{userPosts()?.length}}</h1>
+
+    @if(userPosts(); as posts) {
+      @for( post of posts; track post.id) {
+        <div class="card"  
+        [class.isEven]="$even"
+        [class.isOdd]="$odd">
+          <h1>{{ post.title }}</h1>
+          <p>{{ post.body }}</p>
+        </div>
+      } @empty {
+        <div>No Posts</div>
+      } 
+    } @else {
+      <div>...Loading / Error </div>
+    }
+   
+  </div> 
+  

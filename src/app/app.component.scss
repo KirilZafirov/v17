@@ -1,0 +1,62 @@
+:host {
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+
+    .left {
+      width: 30%; 
+      } 
+
+    .right {
+      width: 70%;
+    }
+  }
+
+  .card { 
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;  
+    background-color: #fff;  
+    padding: 20px;
+    margin: 10px;
+    cursor: pointer;
+    &.isSelected {
+      background: linear-gradient(to right, #743ad5, #d53a9d);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #d53a9d; 
+      border: 4px solid #ccc;
+      border-image: linear-gradient(to right, #743ad5, #d53a9d) 1;
+      border-image-slice: 1;
+
+    }
+    &.isFirst {
+      background-color: #4169e1; 
+      color: #ffffff; 
+    }
+  
+    &.isLast {
+      background-color: #8b0000;  
+      color: #ffffff; 
+    }
+  
+    &.isEven {
+      background-color: #708090; 
+      color: #ffffff; 
+    }
+  
+    &.isOdd {
+      background-color: #3cb371; // Medium sea green color
+      color: #ffffff; // White text for contrast
+      transition: all 0.5s ease; // Transition effect for smooth animation
+  
+      &:hover {
+        transform: scale(1.05); // Scale the item up slightly when hovered
+      }
+    }
+  }
+}
